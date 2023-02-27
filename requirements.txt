@@ -1,0 +1,11 @@
+click==7.1.2
+dnspython==2.3.0
+fastapi==0.68.0
+h11==0.14.0
+motor==3.1.1
+pydantic==1.10.5
+pymongo==4.3.3
+python-dotenv==1.0.0
+starlette==0.14.2
+typing_extensions==4.5.0
+uvicorn==0.12.2
