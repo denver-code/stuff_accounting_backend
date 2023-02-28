@@ -37,4 +37,4 @@ async def delete(_db, query):
     await globals()[_db].delete_many(query)
 
 async def is_user_exist(email):
-    return  bool(await users_db.find_one({"email": email}))
+    return bool(await users_db.find_one({"email": email}))

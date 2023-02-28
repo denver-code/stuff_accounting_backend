@@ -1,4 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
-private_router = APIRouter(prefix="/private")
+from app.core.tools.jwt import FastJWT
+
+private_router = APIRouter(prefix="/private", dependencies=[Depends(FastJWT.login_required)])
 

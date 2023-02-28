@@ -1,17 +1,20 @@
 from fastapi import APIRouter
-from v1.schemas.user import UserSignUp
-from v1.models.user import User
+from app.core.tools.jwt import FastJWT
+from v1.schemas.user import User as UserSchema
+from v1.models.user import User as UserModel
 
 signup_router = APIRouter(prefix="/signup")
 
 @signup_router.post("/")
-async def signup_event(user: UserSignUp):
+async def signup_event(user: UserSchema):
     user = user.dict()
 
-    _user = User(email=user["email"], password=user["password"])
+    _user = UserModel(email=user["email"], password=user["password"])
 
     await _user.insert()
 
+    jwt_token = await FastJWT().encode(optional_data={
+        "email": user["email"]
+    })
 
-
-    
+    return {"message": "User created!", "token": jwt_token}

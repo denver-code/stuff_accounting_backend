@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 from app.core.config import settings
+from app.core.tools.jwt import FastJWT
 
 from v1.api import v1_router
 
@@ -21,6 +22,10 @@ def get_application():
 
 
 app = get_application()
+
+@app.on_event("startup")
+async def on_startup():
+    FastJWT().set_secret_key(settings.JWT_SECRET_KEY)
 
 @app.get("/")
 async def showcase_event():

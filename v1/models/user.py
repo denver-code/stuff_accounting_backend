@@ -13,6 +13,6 @@ class User(BaseModel):
 
     async def insert(self):
         user_dict = self.dict()
-        if not await is_user_exist(self.email):
-            raise HTTPException(409, "User allready exist.")
-        return await insert_one("users", user_dict)
+        if await is_user_exist(self.email):
+            raise HTTPException(409, "User already exist.")
+        return await insert_one("users_db", user_dict)

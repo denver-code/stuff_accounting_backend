@@ -3,7 +3,7 @@ from pydantic import BaseModel, validator
 
 from app.core.tools.email_fixer import EmailFixer
 
-class UserSignUp(BaseModel):
+class User(BaseModel):
     email: str
     password: str
 
