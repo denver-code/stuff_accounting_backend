@@ -6,6 +6,7 @@ from app.core.config import settings
 database_client = motor.motor_asyncio.AsyncIOMotorClient(settings.DATABASE_ADDRESS)
 database = database_client["StuffAccounting"]
 users_db = database["users"]
+items_db = database["items"]
 
 
 async def insert_one(_db, data):

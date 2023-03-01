@@ -31,15 +31,15 @@ class FastJWT:
         return jwt.decode(payload, self.secret_key, algorithms=["HS256"])
 
 
-    async def login_required(self, Authorization=Header("Authorization")):
+    async def login_required(self, Authorisation=Header("Authorisation")):
         try:
-            if Authorization == "Authorization":
+            if Authorisation == "Authorisation":
                 raise
             
-            jwt_token = await self.decode(Authorization)
+            jwt_token = await self.decode(Authorisation)
 
             if jwt_token["expire"] < int(datetime.datetime.now().timestamp()):
                 raise
 
         except:
-            raise HTTPException(status_code=401, detail="Unauthorized")
+            raise HTTPException(status_code=401, detail="Unauthorized.")
