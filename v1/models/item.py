@@ -7,7 +7,6 @@ class Item(BaseModel):
     title: str
     description: str
     picture: str
-    tag: Optional[str] = "Other"
     upc: Optional[str]
     owner: str
 
