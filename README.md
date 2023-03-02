@@ -1,6 +1,13 @@
-# stuff_accounting_backend
+# Stuff Accounting Backend
 
-This project was generated via [manage-fastapi](https://ycd.github.io/manage-fastapi/)! :tada:
+```
+git clone https://github.com/denver-code/stuff_accounting_backend
+cd stuff_accounting_backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+uvicorn app.main:app
+```
 
 ## License
 
