@@ -84,7 +84,7 @@ async def get_profile_items_event(request: Request):
     for _i in user["saved"]:
         _i["_id"] = ObjectId(_i["id"])
         del _i["id"]
-
+        
     merged_list = []
 
     for d1 in my_collection:
