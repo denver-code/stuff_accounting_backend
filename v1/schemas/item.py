@@ -7,7 +7,7 @@ from pydantic import BaseModel
 class Item(BaseModel):
     title: str
     description: str
-    picture: str
+    picture: Optional[str] = ""
     tag: Optional[str] = "Other"
 
 

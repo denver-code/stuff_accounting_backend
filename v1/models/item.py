@@ -6,7 +6,7 @@ from app.core.tools.database import insert_one, is_user_exist
 class Item(BaseModel):
     title: str
     description: str
-    picture: str
+    picture: Optional[str] = ""
     upc: Optional[str]
     owner: str
 
