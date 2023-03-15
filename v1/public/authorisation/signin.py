@@ -10,10 +10,10 @@ async def signin_event(user: UserSchema):
     _user = await find_one("users_db", {"email": user.email})
 
     if not _user:
-        raise HTTPException(401, "Email or password are inncorect!")
+        raise HTTPException(401, "Email or password are incorect!")
 
     if user.password != _user["password"]:
-        raise HTTPException(401, "Email or password are inncorect!")
+        raise HTTPException(401, "Email or password are incorect!")
 
     jwt_token = await FastJWT().encode(optional_data={
         "email": user.email
