@@ -14,6 +14,9 @@ async def get_item(ucp: str):
 
     if resp.status_code in [404, 400]:
         raise HTTPException(resp.status_code, data.message)
+
+    if not data["items"]:
+        raise HTTPException(404, "Unfortunately product not found.")
     
     del data["items"][0]["offers"]
 
