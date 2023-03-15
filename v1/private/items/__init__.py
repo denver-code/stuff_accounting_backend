@@ -6,6 +6,7 @@ from v1.models.item import Item as ItemModel
 from v1.schemas.item import Item as ItemSchema
 from app.core.tools.check import is_valid_id
 from bson import ObjectId
+from collections import defaultdict
 
 items_router = APIRouter(prefix="/items")
 
@@ -85,15 +86,11 @@ async def get_profile_items_event(request: Request):
         _i["_id"] = ObjectId(_i["id"])
         del _i["id"]
         
-    merged_list = []
+    merged_list = [(d1 | d2) for d1, d2 in zip(my_collection, user["saved"])]
 
-    for d1 in my_collection:
-        for d2 in user["saved"]:
-            if d1['_id'] == d2['_id']:
-                d1.update(d2)
-                d1["id"] = str(d1["_id"])
-                del d1["_id"]
-                merged_list.append(d1)
+    for item in merged_list:
+        item["id"] = str(item["_id"])
+        del item["_id"] 
 
     return merged_list
 
