@@ -46,10 +46,13 @@ async def add_upc_item_event(upc: str, request: Request, tag: str = "Other"):
 
     if not item:
         item = await get_item(upc)
+        picture = ""
+        if item["images"]:
+            picture = item["images"][0]
         _item = ItemModel(
             title= item["title"],
             description=item["description"],
-            picture=item["images"][0],
+            picture=picture,
             owner=str(user["_id"]),
             upc=upc
         )
