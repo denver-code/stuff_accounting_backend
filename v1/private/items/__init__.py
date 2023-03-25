@@ -88,8 +88,11 @@ async def get_profile_items_event(request: Request):
     for _i in user["saved"]:
         _i["_id"] = ObjectId(_i["id"])
         del _i["id"]
-        
-    merged_list = [(d1 | d2) for d1, d2 in zip(my_collection, user["saved"])]
+
+    list1_sorted = sorted(my_collection, key=lambda k: k['_id'])
+    list2_sorted = sorted(user["saved"], key=lambda k: k['_id'])
+
+    merged_list = [(d1 | d2) for d1, d2 in zip(list1_sorted, list2_sorted)]
 
     for item in merged_list:
         item["id"] = str(item["_id"])
